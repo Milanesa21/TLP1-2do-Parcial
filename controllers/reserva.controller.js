@@ -1,7 +1,7 @@
-const Reserva = require('../models/reserva.model');
+const Reserva = require('../models/Reserva');
 
 // Obtener todas las reservas
-exports.getAllReservas = async (req, res) => {
+exports.obtenerTodasLasReservas = async (req, res) => {
   try {
     const reservas = await Reserva.findAll();
     res.json(reservas);
@@ -11,7 +11,7 @@ exports.getAllReservas = async (req, res) => {
 };
 
 // Obtener una reserva por su ID
-exports.getReservaById = async (req, res) => {
+exports.obtenerReservaPorId = async (req, res) => {
   const { id } = req.params;
   try {
     const reserva = await Reserva.findByPk(id);
@@ -26,7 +26,7 @@ exports.getReservaById = async (req, res) => {
 };
 
 // Crear una reserva
-exports.createReserva = async (req, res) => {
+exports.crearReserva = async (req, res) => {
   const { codigo, nombre, fecha } = req.body;
   try {
     const reserva = await Reserva.create({ codigo, nombre, fecha });
@@ -37,7 +37,7 @@ exports.createReserva = async (req, res) => {
 };
 
 // Actualizar una reserva por su ID
-exports.updateReserva = async (req, res) => {
+exports.actualizarReserva = async (req, res) => {
   const { id } = req.params;
   const { codigo, nombre, fecha } = req.body;
   try {
@@ -54,7 +54,7 @@ exports.updateReserva = async (req, res) => {
 };
 
 // Eliminar una reserva por su ID
-exports.deleteReserva = async (req, res) => {
+exports.eliminarReserva = async (req, res) => {
   const { id } = req.params;
   try {
     const reserva = await Reserva.findByPk(id);

@@ -1,8 +1,11 @@
 // Imports
-const cors = require('cors');
 const express = require('express');
-require('dotenv').config();
+const dotenv = require('dotenv');
+const cors = require('cors');
+const { Sequelize } = require('sequelize');
+const { body, validationResult } = require('express-validator');
 
+dotenv.config();
 
 const path = require('path');
 
@@ -18,7 +21,7 @@ app.use('/api', require('./routes/reserva.routes'));
 
 // TODO: Si la petición no coincide con ninguna de las rutas declaradas, mostrar error 404
 
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.status(404).send('Error 404: Página no encontrada');
   }); 
 
